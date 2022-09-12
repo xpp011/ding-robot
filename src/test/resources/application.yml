@@ -1,0 +1,10 @@
+
+spring:
+  redis:
+    host:
+    password:
+
+warn:
+  ding-robot:
+    instance:
+      test:
