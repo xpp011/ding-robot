@@ -85,15 +85,20 @@ warn:
 ### 发送消息
 
 ```java
-At at = new At.Builder()
-        .setAtMobiles(Arrays.asList("phone"))
-        .setAtAll(false)
-        .builder();
-Message text = new TextMessage.Builder()
-        .setContent("测试消息")
-        .setAt(at)
-        .builder();
-boolean test = dingRobotFactory.getDingRobot("test").send(text);
+@Autowired
+private DingRobotFactory dingRobotFactory;
+
+public void testSendTextMessage() {
+        At at=new At.Builder()
+                .setAtMobiles(Arrays.asList("phone"))
+                .setAtAll(false)
+                .builder();
+        Message text=new TextMessage.Builder()
+                .setContent("测试消息")
+                .setAt(at)
+                .builder();
+        boolean test=dingRobotFactory.getDingRobot("test").send(text);
+}
 ```
 
 
