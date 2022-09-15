@@ -100,6 +100,7 @@ public void testSendTextMessage() {
         boolean test=dingRobotFactory.getDingRobot("test").send(text);
 }
 ```
+更多消息类型构造可查看[测试代码](https://github.com/xpp011/ding-robot/blob/master/src/test/java/cn/xpp011/dingrobot/MessageTest.java)
 
 
 
@@ -117,10 +118,10 @@ public void testSendTextMessage() {
 
 ## Roadmap
 
-| 功能                                   | 优先级 | 进度   |
-| -------------------------------------- | ------ | ------ |
+| 功能                                   | 优先级 | 进度  |
+| -------------------------------------- | ------ |-----|
 | 简化依赖包                             | p1     | 未开发 |
-| 支持actionCard、feedCard的消息类型     | p1     | 未开发 |
+| 支持actionCard、feedCard的消息类型     | p1     | 完成  |
 | 完善测试报告                           | p1     | 未开发 |
 | 支持更多的限流算法                     | p2     | 未开发 |
 | 整合各种预警方式(企业微信、短信、邮件) | p1     | 未开发 |
