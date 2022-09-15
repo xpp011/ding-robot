@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * @program: ding-robot
- * @description:
+ * @description: link消息类型
  * @author: xpp011
  * @create: 2022-08-01 22:15
  **/
@@ -56,18 +56,6 @@ public class LinkMessage extends Message {
          */
         public Builder setMessageUrl(String messageUrl) {
             this.messageUrl = messageUrl;
-            return this;
-        }
-
-        /**
-         * link消息不支持@人员
-         *
-         * @param at
-         * @return
-         */
-        @Deprecated
-        public Builder setAt(At at) {
-            this.at = at;
             return this;
         }
 

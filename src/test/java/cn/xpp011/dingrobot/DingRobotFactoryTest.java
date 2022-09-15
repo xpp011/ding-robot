@@ -42,14 +42,35 @@ public class DingRobotFactoryTest {
         Assert.isTrue(success, "发送失败");
     }
 
-
-
-
     @Test
     public void testSendLinkMessage() {
         DingRobotTemplate dingRobot = dingRobotFactory.getDingRobot("message-fail");
         Message link = MessageTest.builderLinkMessage();
         boolean success = dingRobot.send(link);
+        Assert.isTrue(success, "发送失败");
+    }
+
+    @Test
+    public void testSendActionCardMessage() {
+        DingRobotTemplate dingRobot = dingRobotFactory.getDingRobot("message-fail");
+        Message actionCard = MessageTest.builderActionCardMessage();
+        boolean success = dingRobot.send(actionCard);
+        Assert.isTrue(success, "发送失败");
+    }
+
+    @Test
+    public void testSendActionCardMessageBtns() {
+        DingRobotTemplate dingRobot = dingRobotFactory.getDingRobot("message-fail");
+        Message actionCard = MessageTest.builderActionCardMessageBtns();
+        boolean success = dingRobot.send(actionCard);
+        Assert.isTrue(success, "发送失败");
+    }
+
+    @Test
+    public void testSendFeedCardMessage() {
+        DingRobotTemplate dingRobot = dingRobotFactory.getDingRobot("message-fail");
+        Message feedCard = MessageTest.builderFeedCardMessage();
+        boolean success = dingRobot.send(feedCard);
         Assert.isTrue(success, "发送失败");
     }
 

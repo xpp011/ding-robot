@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * @program: ding-robot
- * @description:
+ * @description: text消息类型
  * @author: xpp011
  * @create: 2022-08-01 22:14
  **/

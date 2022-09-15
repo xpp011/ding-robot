@@ -14,7 +14,7 @@ public abstract class MessageBuilder {
     /**
      * at信息，子类需写setAt方法
      */
-    protected At at;
+    protected At at = new At();
 
     protected abstract Map<String, Object> builderBody();
 
