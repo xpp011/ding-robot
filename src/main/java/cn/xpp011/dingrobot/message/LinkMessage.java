@@ -4,10 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @program: ding-robot
- * @description: link消息类型
- * @author: xpp011
- * @create: 2022-08-01 22:15
+ * link消息类型
+ *
+ * @author: xpp011 2022-08-01 22:15
  **/
 
 public class LinkMessage extends Message {
@@ -39,8 +38,8 @@ public class LinkMessage extends Message {
         /**
          * 图片url
          *
-         * @param picUrl
-         * @return
+         * @param picUrl 图片url
+         * @return Builder
          */
         public Builder setPicUrl(String picUrl) {
             this.picUrl = picUrl;
@@ -50,8 +49,8 @@ public class LinkMessage extends Message {
         /**
          * 消息转跳连接
          *
-         * @param messageUrl
-         * @return
+         * @param messageUrl 消息转跳连接
+         * @return Builder
          * @see <a href="https://open.dingtalk.com/document/orgapp-server/message-link-description">消息链接打开方式</a>
          */
         public Builder setMessageUrl(String messageUrl) {

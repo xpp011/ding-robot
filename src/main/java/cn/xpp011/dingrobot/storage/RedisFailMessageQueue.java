@@ -1,16 +1,15 @@
 package cn.xpp011.dingrobot.storage;
 
+import cn.xpp011.dingrobot.ExceptionUtil;
+import cn.xpp011.dingrobot.message.FailMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import cn.xpp011.dingrobot.ExceptionUtil;
-import cn.xpp011.dingrobot.message.FailMessage;
 
 /**
- * @program: ding-robot
- * @description: redis失败队列
- * @author: xpp011
- * @create: 2022-08-21 21:13
+ * redis失败队列
+ *
+ * @author: xpp011 2022-08-21 21:13
  **/
 
 public class RedisFailMessageQueue implements FailMessageQueue {

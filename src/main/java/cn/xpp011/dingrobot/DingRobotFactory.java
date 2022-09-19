@@ -1,7 +1,5 @@
 package cn.xpp011.dingrobot;
 
-import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.web.client.RestTemplate;
 import cn.xpp011.dingrobot.config.DingRobotProperties;
 import cn.xpp011.dingrobot.config.DingRobotProperties.RobotProperties;
 import cn.xpp011.dingrobot.executor.TaskEnforcer;
@@ -9,16 +7,17 @@ import cn.xpp011.dingrobot.ratelimiter.RateLimiter;
 import cn.xpp011.dingrobot.ratelimiter.RateLimiterFactory;
 import cn.xpp011.dingrobot.ratelimiter.RateLimiterType;
 import cn.xpp011.dingrobot.storage.FailMessageQueue;
+import org.springframework.beans.factory.BeanCreationException;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 /**
- * @program: ding-robot
- * @description: 创建获取DingRobotTemplate
- * @author: xpp011
- * @create: 2022-08-11 13:10
+ * 创建获取DingRobotTemplate
+ *
+ * @author: xpp011 2022-08-11 13:10
  **/
 
 public class DingRobotFactory {

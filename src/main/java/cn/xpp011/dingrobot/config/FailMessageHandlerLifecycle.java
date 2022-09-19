@@ -1,13 +1,10 @@
 package cn.xpp011.dingrobot.config;
 
-import org.springframework.context.SmartLifecycle;
 import cn.xpp011.dingrobot.FailMessageHandler;
+import org.springframework.context.SmartLifecycle;
 
 /**
- * @program: ding-robot
- * @description:
- * @author: xpp011
- * @create: 2022-09-01 22:56
+ * @author: xpp011 2022-09-01 22:56
  **/
 
 public class FailMessageHandlerLifecycle implements SmartLifecycle {

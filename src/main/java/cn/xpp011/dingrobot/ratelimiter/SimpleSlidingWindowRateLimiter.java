@@ -11,10 +11,9 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @program: ding-robot
- * @description: 滑动窗口限流器
- * @author: xpp011
- * @create: 2022-09-05 22:21
+ * 滑动窗口限流器
+ *
+ * @author: xpp011 2022-09-05 22:21
  **/
 
 public class SimpleSlidingWindowRateLimiter implements RateLimiter {

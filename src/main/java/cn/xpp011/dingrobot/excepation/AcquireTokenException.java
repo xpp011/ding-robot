@@ -1,10 +1,9 @@
 package cn.xpp011.dingrobot.excepation;
 
 /**
- * @program: ding-robot
- * @description: 获取令牌失败异常
- * @author: xpp011
- * @create: 2022-08-02 13:19
+ * 获取令牌失败异常
+ *
+ * @author: xpp011 2022-08-02 13:19
  **/
 
 public class AcquireTokenException extends RuntimeException {

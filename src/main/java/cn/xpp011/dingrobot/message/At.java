@@ -9,10 +9,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @program: ding-robot
- * @description: at
- * @author: xpp011
- * @create: 2022-08-01 22:09
+ * at
+ *
+ * @author: xpp011 2022-08-01 22:09
  **/
 
 public class At implements Serializable {

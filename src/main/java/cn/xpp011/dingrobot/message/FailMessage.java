@@ -3,10 +3,9 @@ package cn.xpp011.dingrobot.message;
 import com.google.common.base.MoreObjects;
 
 /**
- * @program: ding-robot
- * @description: 失败消息
- * @author: xpp011
- * @create: 2022-08-21 21:15
+ * 失败消息
+ *
+ * @author: xpp011 2022-08-21 21:15
  **/
 
 public class FailMessage {

@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @program: ding-robot
- * @description: FeedCard消息类型
- * @author: xpp011
- * @create: 2022-09-15 23:45
+ * FeedCard消息类型
+ *
+ * @author: xpp011 2022-09-15 23:45
  **/
 
 public class FeedCardMessage extends Message {
@@ -25,10 +24,11 @@ public class FeedCardMessage extends Message {
 
         /**
          * 添加link
-         * @param title 单条信息文本
+         *
+         * @param title      单条信息文本
          * @param messageURL 跳转链接(<a href="https://open.dingtalk.com/document/orgapp-server/message-link-description">消息链接打开方式</a>)
-         * @param picURL 图片URL
-         * @return
+         * @param picURL     图片URL
+         * @return Builder
          */
         public Builder addLink(String title, String messageURL, String picURL) {
             links.add(ImmutableMap.of(

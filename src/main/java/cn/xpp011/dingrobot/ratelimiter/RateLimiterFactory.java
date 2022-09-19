@@ -9,10 +9,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @program: ding-robot
- * @description: RateLimiter工厂类
- * @author: xpp011
- * @create: 2022-08-21 23:29
+ * RateLimiter工厂类
+ *
+ * @author: xpp011 2022-08-21 23:29
  **/
 
 public class RateLimiterFactory {
@@ -50,7 +49,7 @@ public class RateLimiterFactory {
     /**
      * 定时任务执行周期
      *
-     * @return
+     * @return 执行周期时间
      */
     public static long getPeriod() {
         return (WINDOW_SIZE / LIMIT) * 1000 * 2 + OFFSET;
@@ -59,16 +58,16 @@ public class RateLimiterFactory {
     /**
      * 定时任务执行周期时间单位
      *
-     * @return
+     * @return 执行周期时间单位
      */
     public static TimeUnit getUnit() {
         return TimeUnit.MILLISECONDS;
     }
 
     /**
-     * 定时任务执行周期时间单位
+     * 定时任务初始延迟时间
      *
-     * @return
+     * @return 初始延迟时间
      */
     public static long getInitialDelay() {
         return 2000L;

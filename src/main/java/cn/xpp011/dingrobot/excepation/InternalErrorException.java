@@ -1,13 +1,12 @@
 package cn.xpp011.dingrobot.excepation;
 
 /**
- * @program: ding-robot
- * @description: 内部异常
- * @author: xpp011
- * @create: 2022-09-05 22:58
+ * 内部异常
+ *
+ * @author: xpp011 2022-09-05 22:58
  **/
 
-public class InternalErrorException extends Exception{
+public class InternalErrorException extends Exception {
 
     public InternalErrorException() {
         super();

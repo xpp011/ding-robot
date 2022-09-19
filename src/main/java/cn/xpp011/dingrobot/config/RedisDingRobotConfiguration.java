@@ -1,5 +1,9 @@
 package cn.xpp011.dingrobot.config;
 
+import cn.xpp011.dingrobot.executor.RedisTaskEnforcer;
+import cn.xpp011.dingrobot.executor.TaskEnforcer;
+import cn.xpp011.dingrobot.storage.FailMessageQueue;
+import cn.xpp011.dingrobot.storage.RedisFailMessageQueue;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,16 +19,11 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import cn.xpp011.dingrobot.executor.RedisTaskEnforcer;
-import cn.xpp011.dingrobot.executor.TaskEnforcer;
-import cn.xpp011.dingrobot.storage.FailMessageQueue;
-import cn.xpp011.dingrobot.storage.RedisFailMessageQueue;
 
 /**
- * @program: ding-robot
- * @description: redis钉钉机器人配置
- * @author: xpp011
- * @create: 2022-09-07 22:49
+ * redis钉钉机器人配置
+ *
+ * @author: xpp011 2022-09-07 22:49
  **/
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(RedisConnectionFactory.class)

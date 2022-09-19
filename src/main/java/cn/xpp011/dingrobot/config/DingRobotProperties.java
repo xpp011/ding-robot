@@ -6,10 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @program: ding-robot
- * @description: 钉钉机器人配置
- * @author: xpp011
- * @create: 2022-07-18 11:07
+ * 钉钉机器人配置
+ *
+ * @author: xpp011 2022-07-18 11:07
  **/
 @ConfigurationProperties(prefix = "warn.ding-robot")
 public class DingRobotProperties {

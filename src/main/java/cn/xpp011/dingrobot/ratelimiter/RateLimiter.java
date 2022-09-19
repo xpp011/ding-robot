@@ -13,13 +13,15 @@ public interface RateLimiter {
      * 尝试获取令牌
      *
      * @return 是否获取成功
+     * @throws InternalErrorException if the current thread is interrupted while acquiring the lock (and interruption of lock acquisition is supported)
      */
     boolean tryAcquire() throws InternalErrorException;
 
     /**
      * 尝试获取令牌(只有剩余令牌超过界限后才会获取令牌)
      *
-     * @return
+     * @return 是否获取成功
+     * @throws InternalErrorException if the current thread is interrupted while acquiring the lock (and interruption of lock acquisition is supported)
      */
     boolean tryAcquireRemain() throws InternalErrorException;
 

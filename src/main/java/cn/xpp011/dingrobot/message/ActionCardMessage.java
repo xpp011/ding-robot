@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @program: ding-robot
- * @description: actionCard消息类型
- * @author: xpp011
- * @create: 2022-09-15 22:45
+ * actionCard消息类型
+ *
+ * @author: xpp011 2022-09-15 22:45
  **/
 
 public class ActionCardMessage extends Message {
@@ -68,9 +67,10 @@ public class ActionCardMessage extends Message {
 
         /**
          * 按钮方法
-         * button数量>2时横向排列无效
-         * @param isRow
-         * @return
+         * button数量大于2时横向排列无效
+         *
+         * @param isRow isRow
+         * @return Builder
          */
         public Builder setBtnOrientation(boolean isRow) {
             this.btnOrientation = isRow ? "1" : "0";
@@ -82,7 +82,7 @@ public class ActionCardMessage extends Message {
          *
          * @param title     按钮标题
          * @param actionURL 转跳链接(<a href="https://open.dingtalk.com/document/orgapp-server/message-link-description">消息链接打开方式</a>)
-         * @return
+         * @return Builder
          */
         public Builder addBtn(String title, String actionURL) {
             btns.add(ImmutableMap.of("title", title, "actionURL", actionURL));

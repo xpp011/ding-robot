@@ -4,10 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @program: ding-robot
- * @description: MarkDown消息类型
- * @author: xpp011
- * @create: 2022-08-01 22:17
+ * MarkDown消息类型
+ *
+ * @author: xpp011 2022-08-01 22:17
  **/
 
 public class MarkDownMessage extends Message {
@@ -35,8 +34,8 @@ public class MarkDownMessage extends Message {
         /**
          * markdown消息格式@人员时请在text书写@[手机号|userid]才会生效
          *
-         * @param at
-         * @return
+         * @param at at
+         * @return Builder
          */
         public Builder setAt(At at) {
             this.at = at;

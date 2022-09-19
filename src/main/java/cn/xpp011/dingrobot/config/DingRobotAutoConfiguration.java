@@ -1,5 +1,12 @@
 package cn.xpp011.dingrobot.config;
 
+import cn.xpp011.dingrobot.DefaultFailMessageHandler;
+import cn.xpp011.dingrobot.DingRobotFactory;
+import cn.xpp011.dingrobot.FailMessageHandler;
+import cn.xpp011.dingrobot.config.DingRobotAutoConfiguration.DingRobotConfigurationImportSelector;
+import cn.xpp011.dingrobot.executor.TaskEnforcer;
+import cn.xpp011.dingrobot.ratelimiter.RateLimiterType;
+import cn.xpp011.dingrobot.storage.FailMessageQueue;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -11,23 +18,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
-import cn.xpp011.dingrobot.DefaultFailMessageHandler;
-import cn.xpp011.dingrobot.DingRobotFactory;
-import cn.xpp011.dingrobot.FailMessageHandler;
-import cn.xpp011.dingrobot.executor.TaskEnforcer;
-import cn.xpp011.dingrobot.ratelimiter.RateLimiterType;
-import cn.xpp011.dingrobot.storage.FailMessageQueue;
-import cn.xpp011.dingrobot.config.DingRobotAutoConfiguration.DingRobotConfigurationImportSelector;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
 /**
- * @program: ding-robot
- * @description: 钉钉机器人自动配置类
- * @author: xpp011
- * @create: 2022-08-01 10:21
+ * 钉钉机器人自动配置类
+ *
+ * @author: xpp011 2022-08-01 10:21
  **/
 @Configuration
 @ConditionalOnMissingBean(DingRobotFactory.class)

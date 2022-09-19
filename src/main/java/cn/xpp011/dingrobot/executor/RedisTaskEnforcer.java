@@ -9,10 +9,9 @@ import org.springframework.scripting.support.ResourceScriptSource;
 import java.util.Arrays;
 
 /**
- * @program: ding-robot
- * @description: redis执行器
- * @author: xpp011
- * @create: 2022-08-18 22:46
+ * redis执行器
+ *
+ * @author: xpp011 2022-08-18 22:46
  **/
 
 public class RedisTaskEnforcer implements TaskEnforcer<RedisTaskParams> {

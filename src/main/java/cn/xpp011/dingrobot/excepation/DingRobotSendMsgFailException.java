@@ -1,10 +1,9 @@
 package cn.xpp011.dingrobot.excepation;
 
 /**
- * @program: ding-robot
- * @description: 钉钉机器人发送消息失败
- * @author: xpp011
- * @create: 2022-08-09 15:25
+ * 钉钉机器人发送消息失败
+ *
+ * @author: xpp011 2022-08-09 15:25
  **/
 
 public class DingRobotSendMsgFailException extends RuntimeException {

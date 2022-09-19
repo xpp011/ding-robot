@@ -1,15 +1,15 @@
 package cn.xpp011.dingrobot;
 
-import cn.xpp011.dingrobot.storage.SimpleFailMessageQueue;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.Assert;
 import cn.xpp011.dingrobot.excepation.AcquireTokenException;
 import cn.xpp011.dingrobot.message.FailMessage;
 import cn.xpp011.dingrobot.ratelimiter.RateLimiter;
 import cn.xpp011.dingrobot.ratelimiter.RateLimiterFactory;
 import cn.xpp011.dingrobot.storage.FailMessageQueue;
+import cn.xpp011.dingrobot.storage.SimpleFailMessageQueue;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -18,10 +18,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * @program: ding-robot
- * @description: 默认的失败消息处理器
- * @author: xpp011
- * @create: 2022-08-29 23:07
+ * 默认的失败消息处理器
+ *
+ * @author: xpp011 2022-08-29 23:07
  **/
 
 public class DefaultFailMessageHandler implements FailMessageHandler {
@@ -108,7 +107,7 @@ public class DefaultFailMessageHandler implements FailMessageHandler {
             try {
                 //等待任务执行完成
                 scheduledExecutorService.awaitTermination(5, TimeUnit.SECONDS);
-                if(queue instanceof SimpleFailMessageQueue) {
+                if (queue instanceof SimpleFailMessageQueue) {
                     //本地失败消息打印
                     while (!queue.isEmpty()) {
                         log.error("fail message queue message: {}", queue.pop());

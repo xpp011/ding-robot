@@ -1,10 +1,9 @@
 package cn.xpp011.dingrobot.executor;
 
 /**
- * @program: ding-robot
- * @description: redis任务执行参数
- * @author: xpp011
- * @create: 2022-08-20 23:50
+ * redis任务执行参数
+ *
+ * @author: xpp011 2022-08-20 23:50
  **/
 
 public class RedisTaskParams implements TaskParams {

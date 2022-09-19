@@ -1,10 +1,7 @@
 package cn.xpp011.dingrobot.config;
 
 /**
- * @program: ding-robot
- * @description:
- * @author: xpp011
- * @create: 2022-09-10 23:26
+ * @author: xpp011 2022-09-10 23:26
  **/
 
 public enum DingRobotType {

@@ -1,5 +1,11 @@
 package cn.xpp011.dingrobot;
 
+import cn.xpp011.dingrobot.config.DingRobotProperties.RobotProperties;
+import cn.xpp011.dingrobot.excepation.DingRobotSendMsgFailException;
+import cn.xpp011.dingrobot.message.FailMessage;
+import cn.xpp011.dingrobot.message.Message;
+import cn.xpp011.dingrobot.ratelimiter.RateLimiter;
+import cn.xpp011.dingrobot.storage.FailMessageQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
@@ -7,12 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.client.RestTemplate;
-import cn.xpp011.dingrobot.config.DingRobotProperties.RobotProperties;
-import cn.xpp011.dingrobot.excepation.DingRobotSendMsgFailException;
-import cn.xpp011.dingrobot.message.FailMessage;
-import cn.xpp011.dingrobot.message.Message;
-import cn.xpp011.dingrobot.ratelimiter.RateLimiter;
-import cn.xpp011.dingrobot.storage.FailMessageQueue;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -27,10 +27,9 @@ import java.util.concurrent.Future;
 import java.util.function.Function;
 
 /**
- * @program: ding-robot
- * @description:
- * @author: xpp011
- * @create: 2022-07-19 11:17
+ * ding-robot执行类
+ *
+ * @author: xpp011 2022-07-19 11:17
  **/
 public class DingRobotTemplate {
 
@@ -54,11 +53,13 @@ public class DingRobotTemplate {
     private final Function<Message, Boolean> FAIL;
 
     /**
-     * @param restTemplate
+     * @param restTemplate    restTemplate
      * @param robotProperties 参数信息
      * @param retry           重试次数
      * @param executor        异步处理线程池
-     * @param rateLimiter
+     * @param rateLimiter     限流器
+     * @param queue           失败消息队列
+     * @param robotName       机器人名称
      */
     public DingRobotTemplate(RestTemplate restTemplate, RobotProperties robotProperties, int retry, ExecutorService executor, RateLimiter rateLimiter, FailMessageQueue queue, String robotName) {
         this.restTemplate = restTemplate;

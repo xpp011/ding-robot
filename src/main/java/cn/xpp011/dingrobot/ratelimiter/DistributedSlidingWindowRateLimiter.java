@@ -6,10 +6,9 @@ import cn.xpp011.dingrobot.executor.TaskEnforcer;
 import cn.xpp011.dingrobot.executor.TaskParams;
 
 /**
- * @program: ding-robot
- * @description: 滑动窗口限流器
- * @author: xpp011
- * @create: 2022-08-18 22:49
+ * 滑动窗口限流器
+ *
+ * @author: xpp011 2022-08-18 22:49
  **/
 
 public class DistributedSlidingWindowRateLimiter implements RateLimiter {
