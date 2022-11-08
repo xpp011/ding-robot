@@ -1,7 +1,5 @@
 package cn.xpp011.dingrobot;
 
-import io.lettuce.core.RedisCommandTimeoutException;
-import org.springframework.web.client.ResourceAccessException;
 import sun.net.ConnectionResetException;
 
 import java.net.ConnectException;
@@ -26,9 +24,9 @@ public class ExceptionUtil {
             if (e instanceof ConnectionResetException
                     || e instanceof ConnectException
                     || e instanceof SocketTimeoutException
-                    || e instanceof RedisCommandTimeoutException
-                    || e instanceof NoRouteToHostException
-                    || e instanceof ResourceAccessException) return true;
+                    || e instanceof NoRouteToHostException) {
+                return true;
+            }
             return isNetworkException(e.getCause());
         } catch (Throwable ex) {
             return false;
