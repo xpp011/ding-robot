@@ -7,8 +7,8 @@ import cn.xpp011.dingrobot.ratelimiter.RateLimiter;
 import cn.xpp011.dingrobot.ratelimiter.RateLimiterFactory;
 import cn.xpp011.dingrobot.ratelimiter.RateLimiterType;
 import cn.xpp011.dingrobot.storage.FailMessageQueue;
+import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,14 +34,14 @@ public class DingRobotFactory {
         Map<String, RobotProperties> instance;
         if (properties == null || (instance = properties.getInstance()) == null) return;
 
-        RestTemplate restTemplate = new RestTemplate();
+        OkHttpClient okHttpClient = createOkHttpClient();
         dingRobotMap = new HashMap<>();
         for (String name : instance.keySet()) {
             RobotProperties robotProperties = instance.get(name);
             try {
                 //创建限流器
                 RateLimiter rateLimiter = RateLimiterFactory.getRateLimiter(rateLimiterType, taskEnforcer, name);
-                dingRobotMap.put(name, creatDingRobot(restTemplate, robotProperties, properties.getRetry(), rateLimiter, name));
+                dingRobotMap.put(name, creatDingRobot(okHttpClient, robotProperties, properties.getRetry(), rateLimiter, name));
             } catch (Exception e) {
                 //创建bean异常
                 throw new BeanCreationException(String.format("exception while creating dingRobot: %s", name, e.getMessage()));
@@ -49,8 +49,14 @@ public class DingRobotFactory {
         }
     }
 
-    private DingRobotTemplate creatDingRobot(RestTemplate restTemplate, RobotProperties properties, int retry, RateLimiter rateLimiter, String robotName) throws IllegalArgumentException {
-        return new DingRobotTemplate(restTemplate, properties, retry, executor, rateLimiter, failMessageQueue, robotName);
+    private DingRobotTemplate creatDingRobot(OkHttpClient client, RobotProperties properties, int retry, RateLimiter rateLimiter, String robotName) throws IllegalArgumentException {
+        return new DingRobotTemplate(client, properties, retry, executor, rateLimiter, failMessageQueue, robotName);
+    }
+
+    private OkHttpClient createOkHttpClient() {
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .build();
+        return httpClient;
     }
 
     public DingRobotTemplate getDingRobot(String dingRobotName) {

@@ -6,16 +6,17 @@ import cn.xpp011.dingrobot.message.FailMessage;
 import cn.xpp011.dingrobot.message.Message;
 import cn.xpp011.dingrobot.ratelimiter.RateLimiter;
 import cn.xpp011.dingrobot.storage.FailMessageQueue;
+import com.google.common.collect.Maps;
+import okhttp3.*;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
 import org.springframework.util.Base64Utils;
-import org.springframework.web.client.RestTemplate;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -35,7 +36,9 @@ public class DingRobotTemplate {
 
     private static final Logger log = LoggerFactory.getLogger(DingRobotTemplate.class);
 
-    private final RestTemplate restTemplate;
+    public static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
+
+    private OkHttpClient client;
 
     private final String webhook;
 
@@ -53,7 +56,7 @@ public class DingRobotTemplate {
     private final Function<Message, Boolean> FAIL;
 
     /**
-     * @param restTemplate    restTemplate
+     * @param client          httpClient
      * @param robotProperties 参数信息
      * @param retry           重试次数
      * @param executor        异步处理线程池
@@ -61,8 +64,8 @@ public class DingRobotTemplate {
      * @param queue           失败消息队列
      * @param robotName       机器人名称
      */
-    public DingRobotTemplate(RestTemplate restTemplate, RobotProperties robotProperties, int retry, ExecutorService executor, RateLimiter rateLimiter, FailMessageQueue queue, String robotName) {
-        this.restTemplate = restTemplate;
+    public DingRobotTemplate(OkHttpClient client, RobotProperties robotProperties, int retry, ExecutorService executor, RateLimiter rateLimiter, FailMessageQueue queue, String robotName) {
+        this.client = client;
         this.retry = retry;
         this.executor = executor;
         this.rateLimiter = rateLimiter;
@@ -101,13 +104,18 @@ public class DingRobotTemplate {
         }
     }
 
-    protected boolean doSend(Message message, int retry) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
+    protected boolean doSend(Message message, int retry) throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         boolean res = true;
         try {
-            HttpEntity<Message> entity = new HttpEntity<>(message);
-            ResponseEntity<Map> response = restTemplate.postForEntity(signatureUrl(), entity, Map.class);
-            if (response.getStatusCodeValue() != 200 || !"ok".equals(response.getBody().get("errmsg"))) {
-                throw new DingRobotSendMsgFailException((String) response.getBody().get("errmsg"));
+            RequestBody requestBody = RequestBody.create(JsonUtil.toJson(message), MEDIA_TYPE_JSON);
+            Request request = new Request.Builder()
+                    .url(signatureUrl())
+                    .post(requestBody)
+                    .build();
+            Response response = client.newCall(request).execute();
+            Map<String, Object> responseBody = Maps.newHashMap();
+            if (!response.isSuccessful() || !"ok".equals((responseBody = JsonUtil.toMap(response.body().string())).get("errmsg"))) {
+                throw new DingRobotSendMsgFailException((String) responseBody.get("errmsg"));
             }
         } catch (Exception e) {
             //网络io异常重试
@@ -124,6 +132,9 @@ public class DingRobotTemplate {
      * @return 返回签名完成的url
      */
     private String signatureUrl() throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException {
+        if (StringUtils.isBlank(secret)) {
+            return webhook;
+        }
         long timeMillis = System.currentTimeMillis();
         String stringToSign = timeMillis + "\n" + secret;
         Mac mac = Mac.getInstance("HmacSHA256");

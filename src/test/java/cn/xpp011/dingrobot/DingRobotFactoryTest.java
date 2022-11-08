@@ -52,7 +52,7 @@ public class DingRobotFactoryTest {
 
     @Test
     public void testSendActionCardMessage() {
-        DingRobotTemplate dingRobot = dingRobotFactory.getDingRobot("message-fail");
+        DingRobotTemplate dingRobot = dingRobotFactory.getDingRobot("test");
         Message actionCard = MessageTest.builderActionCardMessage();
         boolean success = dingRobot.send(actionCard);
         Assert.isTrue(success, "发送失败");
